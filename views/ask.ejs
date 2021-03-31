@@ -9,14 +9,14 @@
                 <h3 class="text-center mt-3">Ask a question</h3>
             </div>
             <div class="card-body">
-                <form method="POST">
+                <form method="POST" action="/saveAsk">
                     <div class="form-group mb-4">
-                        <label for="name">Title</label>
-                        <input class="form-control" placeholder="Question title" type="text">
+                        <label for="title">Title</label>
+                        <input name="title" class="form-control" id="title" placeholder="Question title" type="text">
                     </div>
                     <div class="form-group mb-4">
                         <label for="description">Description</label>
-                        <textarea class="form-control" placeholder="Describe your question here" name="description" id="" cols="30" rows="5"></textarea>
+                        <textarea name="description" class="form-control" placeholder="Describe your question here" name="description" id="description" cols="30" rows="5"></textarea>
                     </div>
                     <div class="form-group mb-4 d-flex justify-content-center">
                         <button class="btn btn-primary">Ask</button>
