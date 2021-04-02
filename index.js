@@ -31,7 +31,12 @@ app.get("/ask",(req, res) => {
 app.post("/saveAsk",(req, res) =>{
     let title =  req.body.title;
     let description = req.body.description;
-    res.send(title + description);
+    QuestionsModel.create({
+        title: title,
+        description: description
+    }).then(() =>{
+        res.redirect("/");
+    })
 });
 
 app.listen(8080,()=>{console.log("App is running!")});
