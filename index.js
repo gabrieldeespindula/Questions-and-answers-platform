@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const QuestionsModel = require("./database/Questions");
+const AnswerModel = require("./database/Answer");
 
 connection
     .authenticate()
@@ -42,6 +43,21 @@ app.post("/saveAsk",(req, res) =>{
     }).then(() =>{
         res.redirect("/");
     })
+});
+
+app.get("/question/:id", (req, res) => {
+    let id = req.params.id;
+    QuestionsModel.findOne({
+        where: {id: id}
+    }).then(question =>{
+        if(question != undefined){
+            res.render("question", {
+                question: question
+            });
+        }else{
+            res.redirect("/");
+        }
+    });
 });
 
 app.listen(8080,()=>{console.log("App is running!")});
