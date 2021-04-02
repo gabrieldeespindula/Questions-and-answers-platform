@@ -5,17 +5,33 @@
       
     <div class="container mt-5">  
         <div class="border rounded p-5">
+            <small><%= (question.createdAt.getMonth() + 1) < 10 ? "0" + (question.createdAt.getMonth() + 1) : (question.createdAt.getMonth() + 1) %>/<%= question.createdAt.getDate() < 10 ? "0" + question.createdAt.getDate() : question.createdAt.getDate() %>/<%= question.createdAt.getFullYear() %></small>
             <h1><%= question.title %></h1>    
             <p><%= question.description %></p>  
         </div>
         <form action="/saveAnswer" method="POST" class="mt-5 p-3">
             <h4>Answer</h4>
-            <textarea name="response" class="form-control" placeholder="Write your answer here." id="response" cols="30" rows="7"></textarea>
+            <textarea name="response" class="form-control" placeholder="Write your answer here." id="response" cols="30" rows="7" required></textarea>
             <input type="hidden" name="id_question" value="<%= question.id %>">
             <div class="d-flex justify-content-end mt-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
+        <div class="d-flex justify-content-center mt-3">
+            <h1>Answers</h1>    
+        </div>
+        <% answers.forEach(answer => {%>
+            <div class="card">
+                <div class="card-body">
+                    <p><%= answer.response %></p>
+                </div>
+                <div class="card-footer">
+                    <small><%= (answer.createdAt.getMonth() + 1) < 10 ? "0" + (answer.createdAt.getMonth() + 1) : (answer.createdAt.getMonth() + 1) %>/<%= answer.createdAt.getDate() < 10 ? "0" + answer.createdAt.getDate() : answer.createdAt.getDate() %>/<%= answer.createdAt.getFullYear() %></small>
+                </div>
+            </div>
+            
+
+        <%}) %>
     </div>
     
 </body>

@@ -16,6 +16,9 @@
         <% questions.forEach(question => { %>
             
             <div class="card">
+                <div class="card-header">
+                    <small><%= (question.createdAt.getMonth() + 1) < 10 ? "0" + (question.createdAt.getMonth() + 1) : (question.createdAt.getMonth() + 1) %>/<%= question.createdAt.getDate() < 10 ? "0" + question.createdAt.getDate() : question.createdAt.getDate() %>/<%= question.createdAt.getFullYear() %></small>
+                </div>
                 <div class="card-body">
                     <h4><%= question.title %></h4>
                 </div>
