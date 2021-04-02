@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const QuestionsModel = require("./database/Questions");
 const AnswerModel = require("./database/Answer");
+const Answer = require("./database/Answer");
 
 connection
     .authenticate()
@@ -42,6 +43,17 @@ app.post("/saveAsk",(req, res) =>{
         description: description
     }).then(() =>{
         res.redirect("/");
+    })
+});
+
+app.post("/saveAnswer", (req, res) => {
+    let response = req.body.response;
+    let id_question = req.body.id_question;
+    AnswerModel.create({
+        response: response,
+        id_question: id_question
+    }).then(() => {
+        res.redirect("/question/" + id_question);
     })
 });
 

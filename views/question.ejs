@@ -8,6 +8,14 @@
             <h1><%= question.title %></h1>    
             <p><%= question.description %></p>  
         </div>
+        <form action="/saveAnswer" method="POST" class="mt-5 p-3">
+            <h4>Answer</h4>
+            <textarea name="response" class="form-control" placeholder="Write your answer here." id="response" cols="30" rows="7"></textarea>
+            <input type="hidden" name="id_question" value="<%= question.id %>">
+            <div class="d-flex justify-content-end mt-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </div>
     
 </body>
