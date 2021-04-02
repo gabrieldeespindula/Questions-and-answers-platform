@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 
 app.get("/",(req, res) => {
     QuestionsModel.findAll({raw: true}).then(questions =>{
-        console.log(questions);
         res.render("index", {
             questions: questions
         });
