@@ -20,8 +20,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.get("/",(req, res) => {
-    var name = req.params.name
-    res.render("index")
+    QuestionsModel.findAll({raw: true}).then(questions =>{
+        console.log(questions);
+        res.render("index", {
+            questions: questions
+        });
+    });
 });
 
 app.get("/ask",(req, res) => {
